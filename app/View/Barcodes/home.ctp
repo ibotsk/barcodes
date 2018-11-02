@@ -6,9 +6,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span> 
         </button>
+        <div>Connected to: <?php echo ConnectionManager::getDataSource('default')->config['database']; ?></div>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-
         <ul class="nav navbar-nav navbar-right">
             <li><?php echo $this->Html->link('<span class="glyphicon glyphicon-log-out"></span> Logout', '/users/logout', array('escape' => false)); ?></li>
         </ul>
@@ -34,7 +34,7 @@
                 <td><?php echo $bc['UsedBarcode']['name']; ?></td>
                 <td><?php echo $bc['UsedBarcode']['purpose']; ?></td>
                 <td><?php echo $bc['UsedBarcode']['created']; ?></td>
-                <td><?php echo $this->Html->link('PDF', array('controller' => 'pdfs', 'action' => 'view_pdf', 'ext' => 'pdf', $bc['UsedBarcode']['first'], $bc['UsedBarcode']['last'])); ?></td>
+                <td><?php echo $this->Html->link('Barcodes', array('controller' => 'pdfs', 'action' => 'view', $bc['UsedBarcode']['first'], $bc['UsedBarcode']['last'])); ?></td>
             </tr>
             <?php
         endforeach;

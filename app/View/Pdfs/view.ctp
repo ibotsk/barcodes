@@ -1,9 +1,11 @@
 <style type="text/css">
+    :root{-webkit-print-color-adjust:exact}
     * { margin: 0; padding: 0;}
+    
     #main { width: 800px; }
     .barcode { 
 
-        width: 170px;
+        width: 190px;
         border: 1px dotted #000;
         border-top: none;
         border-left: none;
@@ -21,7 +23,6 @@
 
     .barcode-container {
         display: block;
-        width: 600px;
         clear: both;
     }
 </style>
@@ -29,15 +30,14 @@
 <div id="main">
     <?php
     
-    $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+    $generator = new Picqer\Barcode\BarcodeGeneratorPNG();
     $i = 0;
     foreach ($barcodes as $b):
 
         if ($i % 4 == 0) {
             echo '<div class="barcode-container">';
         }
-        $bar = $generator->getBarcode($b['Barcode']['text'], $generator::TYPE_CODE_128, $settings['width'], $settings['height']);
-        //echo $this->element('barcode', array('barcode' => $bar, 'text' => $b['Barcode']['text']));
+        $bar = '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($b['Barcode']['text'], $generator::TYPE_CODE_128, $settings['width'], $settings['height'])) . '">';
         ?>
 
         <div class="barcode">
@@ -50,7 +50,7 @@
         </div>
 
         <?php
-        if ($i % 4 == 0) {
+        if ($i % 4 == 3) {
             echo '</div>';
         }
         $i++;

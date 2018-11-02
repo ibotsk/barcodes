@@ -35,6 +35,9 @@
         echo $this->fetch('css');
         echo $this->fetch('script');
         ?>
+        <style type="text/css">
+        :root{-webkit-print-color-adjust:exact}
+        </style>
     </head>
     <body>
         <div id="container" class="container">

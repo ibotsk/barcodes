@@ -7,7 +7,7 @@
  */
 
 App::uses('AppController', 'Controller');
-App::uses('BarcodeGeneratorHTML', 'Picqer\Barcode');
+App::uses('BarcodeGeneratorHTML', 'Picqer/Barcodes');
 
 /**
  * CakePHP PdfsController
@@ -21,7 +21,7 @@ class PdfsController extends AppController {
     private $width = 1.25;
     private $height = 50;
     
-    public function view_pdf($first, $last) {
+    public function view($first, $last) {
         if (empty($first) || empty($last) || $first < 1 || $last < $first) {
             throw new InvalidArgumentException("id is null");
         }
